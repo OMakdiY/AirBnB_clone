@@ -6,7 +6,6 @@ Unittest classes:
     TestReview_save
     TestReview_to_dict
 """
-
 import os
 import models
 import unittest
@@ -18,18 +17,14 @@ from models.review import Review
 class TestReview_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Review class."""
 
-
     def test_no_args_instantiates(self):
         self.assertEqual(Review, type(Review()))
-
 
     def test_new_instance_stored_in_objects(self):
         self.assertIn(Review(), models.storage.all().values())
 
-
     def test_id_is_public_str(self):
         self.assertEqual(str, type(Review().id))
-
 
     def test_created_at_is_public_datetime(self):
         self.assertEqual(datetime, type(Review().created_at))
@@ -101,10 +96,8 @@ class TestReview_instantiation(unittest.TestCase):
             Review(id=None, created_at=None, updated_at=None)
 
 
-
 class TestReview_save(unittest.TestCase):
     """Unittests for testing save method of the Review class."""
-
 
     @classmethod
     def setUp(self):
@@ -112,7 +105,6 @@ class TestReview_save(unittest.TestCase):
             os.rename("file.json", "tmp")
         except IOError:
             pass
-
 
     def tearDown(self):
         try:
@@ -124,14 +116,12 @@ class TestReview_save(unittest.TestCase):
         except IOError:
             pass
 
-
     def test_one_save(self):
         rv = Review()
         sleep(0.05)
         first_updated_at = rv.updated_at
         rv.save()
         self.assertLess(first_updated_at, rv.updated_at)
-
 
     def test_two_saves(self):
         rv = Review()
@@ -143,7 +133,6 @@ class TestReview_save(unittest.TestCase):
         sleep(0.05)
         rv.save()
         self.assertLess(second_updated_at, rv.updated_at)
-
 
     def test_save_with_arg(self):
         rv = Review()
@@ -158,14 +147,11 @@ class TestReview_save(unittest.TestCase):
             self.assertIn(rvid, f.read())
 
 
-
 class TestReview_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the Review class."""
 
-
     def test_to_dict_type(self):
         self.assertTrue(dict, type(Review().to_dict()))
-
 
     def test_to_dict_contains_correct_keys(self):
         rv = Review()
@@ -180,7 +166,6 @@ class TestReview_to_dict(unittest.TestCase):
         rv.my_number = 98
         self.assertEqual("Holberton", rv.middle_name)
         self.assertIn("my_number", rv.to_dict())
-
 
     def test_to_dict_datetime_attributes_are_strs(self):
         rv = Review()
@@ -210,6 +195,7 @@ class TestReview_to_dict(unittest.TestCase):
         rv = Review()
         with self.assertRaises(TypeError):
             rv.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

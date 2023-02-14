@@ -16,7 +16,6 @@ from models.review import Review
 
 class TestFileStorage(unittest.TestCase):
 
-
     def test_doc(self):
         """claass ann method docstrings"""
 
@@ -33,13 +32,11 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(models.engine.file_storage.FileStorage.
                              reload.__doc__)
 
-
     def test_classes(self):
         """check if classes are created"""
 
         self.assertIsInstance(models.engine.file_storage.FileStorage(),
                               models.engine.file_storage.FileStorage)
-
 
     def test_all(self):
         """check if all method is working"""
@@ -56,19 +53,15 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertIsNotNone(models.engine.file_storage.FileStorage().save)
 
-
     def test_reload(self):
         """check if reload method is working"""
 
         self.assertIsNotNone(models.engine.file_storage.FileStorage().reload)
 
-
     def test_all_method(self):
         """check if all method is working"""
 
-
         self.assertIsNotNone(models.engine.file_storage.FileStorage().all())
-
 
     def test_models_all(self):
         """check if all method is working"""

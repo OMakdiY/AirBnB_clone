@@ -17,7 +17,6 @@ from models.city import City
 class TestCity_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the City class."""
 
-
     def test_no_args_instantiates(self):
         self.assertEqual(City, type(City()))
 
@@ -91,10 +90,8 @@ class TestCity_instantiation(unittest.TestCase):
             City(id=None, created_at=None, updated_at=None)
 
 
-
 class TestCity_save(unittest.TestCase):
     """Unittests for testing save method of the City class."""
-
 
     @classmethod
     def setUp(self):
@@ -102,7 +99,6 @@ class TestCity_save(unittest.TestCase):
             os.rename("file.json", "tmp")
         except IOError:
             pass
-
 
     def tearDown(self):
         try:
@@ -113,7 +109,6 @@ class TestCity_save(unittest.TestCase):
             os.rename("tmp", "file.json")
         except IOError:
             pass
-
 
     def test_one_save(self):
         cy = City()
@@ -133,7 +128,6 @@ class TestCity_save(unittest.TestCase):
         cy.save()
         self.assertLess(second_updated_at, cy.updated_at)
 
-
     def test_save_with_arg(self):
         cy = City()
         with self.assertRaises(TypeError):
@@ -147,10 +141,8 @@ class TestCity_save(unittest.TestCase):
             self.assertIn(cyid, f.read())
 
 
-
 class TestCity_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the City class."""
-
 
     def test_to_dict_type(self):
         self.assertTrue(dict, type(City().to_dict()))
@@ -168,7 +160,6 @@ class TestCity_to_dict(unittest.TestCase):
         cy.my_number = 98
         self.assertEqual("Holberton", cy.middle_name)
         self.assertIn("my_number", cy.to_dict())
-
 
     def test_to_dict_datetime_attributes_are_strs(self):
         cy = City()
@@ -189,7 +180,6 @@ class TestCity_to_dict(unittest.TestCase):
             'updated_at': dt.isoformat(),
         }
         self.assertDictEqual(cy.to_dict(), tdict)
-
 
     def test_contrast_to_dict_dunder_dict(self):
         cy = City()

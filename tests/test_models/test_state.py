@@ -6,7 +6,6 @@ Unittest classes:
     TestState_save
     TestState_to_dict
 """
-
 import os
 import models
 import unittest
@@ -18,22 +17,17 @@ from models.state import State
 class TestState_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the State class."""
 
-
     def test_no_args_instantiates(self):
         self.assertEqual(State, type(State()))
-
 
     def test_new_instance_stored_in_objects(self):
         self.assertIn(State(), models.storage.all().values())
 
-
     def test_id_is_public_str(self):
         self.assertEqual(str, type(State().id))
 
-
     def test_created_at_is_public_datetime(self):
         self.assertEqual(datetime, type(State().created_at))
-
 
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(State().updated_at))
@@ -73,7 +67,6 @@ class TestState_instantiation(unittest.TestCase):
         self.assertIn("'created_at': " + dt_repr, ststr)
         self.assertIn("'updated_at': " + dt_repr, ststr)
 
-
     def test_args_unused(self):
         st = State(None)
         self.assertNotIn(None, st.__dict__.values())
@@ -91,10 +84,8 @@ class TestState_instantiation(unittest.TestCase):
             State(id=None, created_at=None, updated_at=None)
 
 
-
 class TestState_save(unittest.TestCase):
     """Unittests for testing save method of the State class."""
-
 
     @classmethod
     def setUp(self):
@@ -102,7 +93,6 @@ class TestState_save(unittest.TestCase):
             os.rename("file.json", "tmp")
         except IOError:
             pass
-
 
     def tearDown(self):
         try:
@@ -114,14 +104,12 @@ class TestState_save(unittest.TestCase):
         except IOError:
             pass
 
-
     def test_one_save(self):
         st = State()
         sleep(0.05)
         first_updated_at = st.updated_at
         st.save()
         self.assertLess(first_updated_at, st.updated_at)
-
 
     def test_two_saves(self):
         st = State()
@@ -133,7 +121,6 @@ class TestState_save(unittest.TestCase):
         sleep(0.05)
         st.save()
         self.assertLess(second_updated_at, st.updated_at)
-
 
     def test_save_with_arg(self):
         st = State()
@@ -151,10 +138,8 @@ class TestState_save(unittest.TestCase):
 class TestState_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the State class."""
 
-
     def test_to_dict_type(self):
         self.assertTrue(dict, type(State().to_dict()))
-
 
     def test_to_dict_contains_correct_keys(self):
         st = State()
@@ -177,7 +162,6 @@ class TestState_to_dict(unittest.TestCase):
         self.assertEqual(str, type(st_dict["created_at"]))
         self.assertEqual(str, type(st_dict["updated_at"]))
 
-
     def test_to_dict_output(self):
         dt = datetime.today()
         st = State()
@@ -190,7 +174,6 @@ class TestState_to_dict(unittest.TestCase):
             'updated_at': dt.isoformat(),
         }
         self.assertDictEqual(st.to_dict(), tdict)
-
 
     def test_contrast_to_dict_dunder_dict(self):
         st = State()

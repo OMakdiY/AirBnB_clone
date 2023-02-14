@@ -6,7 +6,6 @@ Unittest classes:
     TestPlace_save
     TestPlace_to_dict
 """
-
 import os
 import models
 import unittest
@@ -18,26 +17,20 @@ from models.place import Place
 class TestPlace_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Place class."""
 
-
     def test_no_args_instantiates(self):
         self.assertEqual(Place, type(Place()))
-
 
     def test_new_instance_stored_in_objects(self):
         self.assertIn(Place(), models.storage.all().values())
 
-
     def test_id_is_public_str(self):
         self.assertEqual(str, type(Place().id))
-
 
     def test_created_at_is_public_datetime(self):
         self.assertEqual(datetime, type(Place().created_at))
 
-
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(Place().updated_at))
-
 
     def test_city_id_is_public_class_attribute(self):
         pl = Place()
@@ -75,7 +68,6 @@ class TestPlace_instantiation(unittest.TestCase):
         self.assertIn("number_bathrooms", dir(pl))
         self.assertNotIn("number_bathrooms", pl.__dict__)
 
-
     def test_max_guest_is_public_class_attribute(self):
         pl = Place()
         self.assertEqual(int, type(Place.max_guest))
@@ -99,7 +91,6 @@ class TestPlace_instantiation(unittest.TestCase):
         self.assertEqual(float, type(Place.longitude))
         self.assertIn("longitude", dir(pl))
         self.assertNotIn("longitude", pl.__dict__)
-
 
     def test_amenity_ids_is_public_class_attribute(self):
         pl = Place()
@@ -136,7 +127,6 @@ class TestPlace_instantiation(unittest.TestCase):
         self.assertIn("'created_at': " + dt_repr, plstr)
         self.assertIn("'updated_at': " + dt_repr, plstr)
 
-
     def test_args_unused(self):
         pl = Place(None)
         self.assertNotIn(None, pl.__dict__.values())
@@ -154,10 +144,8 @@ class TestPlace_instantiation(unittest.TestCase):
             Place(id=None, created_at=None, updated_at=None)
 
 
-
 class TestPlace_save(unittest.TestCase):
     """Unittests for testing save method of the Place class."""
-
 
     @classmethod
     def setUp(self):
@@ -165,7 +153,6 @@ class TestPlace_save(unittest.TestCase):
             os.rename("file.json", "tmp")
         except IOError:
             pass
-
 
     def tearDown(self):
         try:
@@ -176,7 +163,6 @@ class TestPlace_save(unittest.TestCase):
             os.rename("tmp", "file.json")
         except IOError:
             pass
-
 
     def test_one_save(self):
         pl = Place()
@@ -196,7 +182,6 @@ class TestPlace_save(unittest.TestCase):
         pl.save()
         self.assertLess(second_updated_at, pl.updated_at)
 
-
     def test_save_with_arg(self):
         pl = Place()
         with self.assertRaises(TypeError):
@@ -210,10 +195,8 @@ class TestPlace_save(unittest.TestCase):
             self.assertIn(plid, f.read())
 
 
-
 class TestPlace_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the Place class."""
-
 
     def test_to_dict_type(self):
         self.assertTrue(dict, type(Place().to_dict()))
@@ -251,7 +234,6 @@ class TestPlace_to_dict(unittest.TestCase):
             'updated_at': dt.isoformat(),
         }
         self.assertDictEqual(pl.to_dict(), tdict)
-
 
     def test_contrast_to_dict_dunder_dict(self):
         pl = Place()
