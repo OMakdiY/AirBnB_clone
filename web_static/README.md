@@ -1,35 +1,5 @@
-0x01. AirBnB clone - Web static
-
-Learning Objectives💡
-
-What you should learn from this project:
-
-
-
-What is HTML
-
-How to create an HTML page
-
-What is a markup language
-
-What is the DOM
-
-What is an element / tag
-
-What is an attribute
-
-How does the browser load a webpage
-
-What is CSS
-
-How to add style to an element
-
-What is a class
-
-What is a selector
-
-How to compute CSS Specificity Value
-
-What are Box properties in CSS
+Airbnb Clone
+Description
+This is one phase of the Airbnb Clone: the HTML and CSS part. The Images folder holds icons for the site (e.g. logo, bathroom icons, bedroom icons, guest icons). The Styles folder holds CSS styling files. The largest numbered style file of each category (e.g. common, footer, header, places) is most relevant to the finished product. The highlest numbered index.html file is likewise the most relevant to the finished product.
 
 
